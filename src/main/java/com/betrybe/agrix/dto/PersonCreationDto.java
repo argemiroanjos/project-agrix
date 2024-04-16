@@ -6,22 +6,7 @@ import com.betrybe.agrix.security.Role;
 /**
  * Representa um DTO para a entidade Person.
  */
-public record PersonDto(
-    Long id,
-    String username,
-    Role role
-) {
-
-  /**
-   * Converte uma entidade Person para um DTO.
-   */
-  public static PersonDto fromEntity(Person person) {
-    return new PersonDto(
-        person.getId(),
-        person.getUsername(),
-        person.getRole()
-    );
-  }
+public record PersonCreationDto(Long id, String username, String password, Role role) {
 
   /**
    * Converte um DTO para uma entidade Person.
@@ -29,6 +14,7 @@ public record PersonDto(
   public Person toEntity() {
     Person person = new Person();
     person.setUsername(username);
+    person.setPassword(password);
     person.setRole(role);
 
     return person;

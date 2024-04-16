@@ -1,5 +1,6 @@
 package com.betrybe.agrix.controller;
 
+import com.betrybe.agrix.dto.PersonCreationDto;
 import com.betrybe.agrix.dto.PersonDto;
 import com.betrybe.agrix.entity.Person;
 import com.betrybe.agrix.service.PersonService;
@@ -30,8 +31,8 @@ public class PersonController {
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public PersonDto save(@RequestBody PersonDto personDto) {
-    Person savedPerson = personService.create(personDto.toEntity(personDto));
+  public PersonDto save(@RequestBody PersonCreationDto person) {
+    Person savedPerson = personService.create(person.toEntity());
 
     return PersonDto.fromEntity(savedPerson);
   }

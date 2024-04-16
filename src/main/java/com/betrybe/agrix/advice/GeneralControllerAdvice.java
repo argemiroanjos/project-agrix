@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice
 public class GeneralControllerAdvice {
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleException(
-      Exception exp) {
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno!");
-  }
 
   @ExceptionHandler(FarmNotFoundException.class)
   public ResponseEntity<String> handleFarmNotFoundException(
