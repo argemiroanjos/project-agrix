@@ -32,4 +32,15 @@ public class TokenService {
   private Instant generateExpirationDate() {
     return Instant.now().plus(2, ChronoUnit.HOURS);
   }
+
+  /**
+   * Validate token.
+   */
+  public String validateToken(String token) {
+    Algorithm algorithm = Algorithm.HMAC256(secret);
+    return JWT.require(algorithm)
+        .build()
+        .verify(token)
+        .getSubject();
+  }
 }

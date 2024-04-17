@@ -10,6 +10,7 @@ import com.betrybe.agrix.service.CropService;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,7 @@ public class CropController {
    */
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
+  @Secured({"MANAGER", "ADMIN"})
   public List<CropDto> getAllCrop() {
     List<Crop> findAllCrops = cropService.getAllCrop();
     List<CropDto> cropDtos = findAllCrops.stream().map(CropDto::fromEntity).toList();
